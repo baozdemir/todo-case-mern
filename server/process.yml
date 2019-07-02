@@ -1,0 +1,6 @@
+apps:
+  - name: "api"
+    log_date_format: "DD-MM-YYYY HH:mm Z"
+    script: "./app.js"
+    env_production:
+      NODE_ENV: production

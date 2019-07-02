@@ -1,0 +1,299 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: Getir Case
+  description: "TODO: Add Description"
+  contact:
+    email: devbarisozdemir@gmail.com
+host: example.com
+basePath: /api/v1
+securityDefinitions: {}
+schemes:
+  - http
+consumes:
+  - application/json
+  - application/x-www-form-urlencoded
+produces:
+  - application/json
+paths:
+  /user:
+    post:
+      description: "TODO: Register"
+      summary: Create (Register)
+      tags:
+        - User
+      operationId: UserPost
+      deprecated: false
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ""
+          default: application/x-www-form-urlencoded
+        - name: username
+          in: formData
+          required: true
+          type: string
+          description: ""
+        - name: password
+          in: formData
+          required: true
+          type: string
+          description: ""
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        Error Code:
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          description: "paramError: 400,
+                        bodyError: 400,
+                        processError: 400,
+                        notFoundError: 404,
+                        databaseError: 500"
+
+      security: []
+  /auth/login:
+    post:
+      description: "TODO: Login"
+      summary: LogIn
+      tags:
+        - Auth
+      operationId: AuthLoginPost
+      deprecated: false
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: Bearer {token}
+          type: string
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ""
+          default: application/x-www-form-urlencoded
+        - name: username
+          in: formData
+          required: true
+          type: string
+          description: ""
+        - name: password
+          in: formData
+          required: true
+          type: string
+          description: ""
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        Error Code:
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          description: "authorizationError: 403,
+                        authenticationError: 401,
+                        paramError: 400,
+                        bodyError: 400,
+                        processError: 400,
+                        databaseError: 500"
+  /task:
+    get:
+      description: "TODO: Get all me tasks"
+      summary: Get tasks
+      tags:
+        - Task
+      operationId: TaskGet
+      deprecated: false
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: Bearer {token}
+          type: string
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ""
+          default: application/x-www-form-urlencoded
+      responses:
+        200:
+          $ref: "#/definitions/Task"
+        Error Code:
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          description: "authorizationError: 403,
+                        authenticationError: 401,
+                        paramError: 400,
+                        queryError: 400,
+                        bodyError: 400,
+                        processError: 400,
+                        notFoundError: 404,
+                        databaseError: 500"
+    post:
+      description: "TODO: if you send the _id parameter, update takes place, if you do not send, new record is created"
+      summary: Upsert One
+      tags:
+        - Task
+      operationId: TaskPost
+      deprecated: false
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          default: Bearer {token}
+          type: string
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ""
+          default: application/x-www-form-urlencoded
+        - name: _id
+          in: formData
+          required: false
+          type: string
+          description: ""
+        - name: description
+          in: formData
+          required: false
+          type: string
+          description: ""
+        - name: isCompleted
+          in: formData
+          required: false
+          type: boolean
+          description: ""
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Task"
+        Error Code:
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          description: "authorizationError: 403,
+                        authenticationError: 401,
+                        paramError: 400,
+                        queryError: 400,
+                        bodyError: 400,
+                        processError: 400,
+                        notFoundError: 404,
+                        databaseError: 500"
+  /task/:id:
+    delete:
+      description: "TODO: Add Description"
+      summary: Delete
+      tags:
+        - Task
+      operationId: Task5d18a4772dc5d90b9b47c0e6Delete
+      deprecated: false
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          default: Bearer {token}
+          type: string
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          description: ""
+          default: application/x-www-form-urlencoded
+        - name: id
+          in: params
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Successful operaiton"
+        Error Code:
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          description: "authorizationError: 403,
+                        authenticationError: 401,
+                        paramError: 400,
+                        queryError: 400,
+                        bodyError: 400,
+                        processError: 400,
+                        notFoundError: 404,
+                        databaseError: 500"
+tags:
+  - name: User
+  - name: Auth
+  - name: Task
+definitions:
+  Task:
+    type: object
+    properties:
+      _id:
+        type: string
+        format: ObjectId
+      userId:
+        type: string
+        format: ObjectId
+      description:
+        type: string
+      isCompleted:
+        type: boolean
+        default: false
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+  User:
+    type: object
+    properties:
+      _id:
+        type: string
+        format: ObjectId
+      username:
+        type: string
+      password:
+        type: string
+      userTasks:
+        type: array
+        items:
+          $ref: "#/definitions/Task"
+  ErrorResponse:
+    type: object
+    properties:
+      type:
+        type: string
+      message:
+        type: string
+      status:
+        type: integer
+      stack:
+        type: string

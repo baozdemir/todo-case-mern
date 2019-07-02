@@ -1,0 +1,22 @@
+.list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-item .todo-tag {
+  margin-left: 10px;
+}
+
+.todo-item .todo-name {
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.todo-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+.todo-form .icon {
+  color: "rgba(0,0,0,.25)";
+}

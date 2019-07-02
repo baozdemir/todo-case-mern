@@ -1,0 +1,8 @@
+export const actionType = {
+  LOGIN: "LOGIN",
+  SIGNUP: "SIGNUP",
+  START: "START",
+  LOGOUT: "LOGOUT",
+  UNAUTH_ERR: "UNAUTH_ERR",
+  SWITCH_AUTH_MODAL: "SWITCH_AUTH_MODAL"
+};

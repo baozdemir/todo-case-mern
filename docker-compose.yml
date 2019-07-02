@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+  nodejs:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: Node
+    volumes:
+      - ./server:/usr/src/app/actual
+      - /usr/src/app/actual/node_modules
+    restart: always
+    ports:
+      - 7101:7101
+
+  react:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: React
+    volumes:
+      - ./client:/usr/src/app/actual
+      - /usr/src/app/actual/node_modules
+    ports:
+      - 7100:7100
+    depends_on:
+      - nodejs
