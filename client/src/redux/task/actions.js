@@ -88,6 +88,7 @@ export const deleteTask = id => async dispatch => {
   }
 };
 
+// actually it't not using yet
 export const toggleTab = tab => async dispatch => {
   dispatch({ type: TOGGLE_TAB, filter: tab });
 };
