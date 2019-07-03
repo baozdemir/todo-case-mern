@@ -62,7 +62,7 @@ export const updateTask = payload => async dispatch => {
     });
   } catch (e) {
     dispatch({
-      type: UPDATE_TASK,
+      type: ERROR_TASK,
       payload: (e && e.response && e.response.data) || null
     });
   }
