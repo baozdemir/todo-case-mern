@@ -1,9 +1,9 @@
-d### Casedddaa
+d### Casedddaasd
 
 A project that runs Node server and a react app via two separate containers, using Docker Compose.
 
 # **Development**
-
+sd
 In the development environment, the project directory is given as volume. Therefore, any changes you make on the project will change in the container instantly. At the same time, you will be able to get instant response because nodemon is used.
 
 ### - Under the hood
